@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## About
+
+This will be a simple user-friendly dashboard showing covid 19 statistics. Rendering charts as well as a map. The page will also make use internationalization to render the pages in either French or English. The stats as of now will only render Canadian data. The data will come from https://api.covid19tracker.ca/docs/1.0/overview.
+
 ## Getting Started
 
 First, run the development server:
