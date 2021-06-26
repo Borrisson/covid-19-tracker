@@ -46,7 +46,7 @@ export function SideBar({ children }: { children: ReactNode }) {
 			>
 				<div className={classes.toolbar} />
 				<Image
-					alt="Mountains"
+					alt="Utah"
 					src="/Utah.jpg"
 					layout="fill"
 					objectFit="cover"
