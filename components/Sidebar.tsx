@@ -1,10 +1,5 @@
-import {
-	Drawer,
-	List,
-	Divider,
-	ListItem,
-	ListItemText,
-} from "@material-ui/core";
+import { Drawer, List, ListItem, ListItemText } from "@material-ui/core";
+import Image from "next/dist/client/image";
 
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import { ReactNode } from "react";
@@ -50,17 +45,16 @@ export function SideBar({ children }: { children: ReactNode }) {
 				anchor="left"
 			>
 				<div className={classes.toolbar} />
-				<Divider />
+				<Image
+					alt="Mountains"
+					src="/Utah.jpg"
+					layout="fill"
+					objectFit="cover"
+					quality={100}
+				/>
+
 				<List>
 					{["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
-				<Divider />
-				<List>
-					{["All mail", "Trash", "Spam"].map((text, index) => (
 						<ListItem button key={text}>
 							<ListItemText primary={text} />
 						</ListItem>
