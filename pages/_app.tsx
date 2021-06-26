@@ -1,7 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { CssBaseline } from "@material-ui/core";
+import { SideBar } from "../components/Sidebar";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+	return (
+		<>
+			<CssBaseline />
+			<SideBar>
+				<Component {...pageProps} />;
+			</SideBar>
+		</>
+	);
 }
-export default MyApp
+export default MyApp;
