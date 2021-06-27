@@ -6,14 +6,35 @@ import {
 	Divider,
 } from "@material-ui/core";
 import Image from "next/dist/client/image";
-import styles from "../styles/SideBar.module.scss";
 import { ReactNode } from "react";
 
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 
+const drawerWidth = 240;
+
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
+		root: {
+			display: "flex",
+		},
+		appBar: {
+			width: `calc(100% - ${drawerWidth}px)`,
+			marginLeft: drawerWidth,
+		},
+		drawer: {
+			width: drawerWidth,
+			flexShrink: 0,
+		},
+		drawerPaper: {
+			width: drawerWidth,
+		},
+		// necessary for content to be below app bar
 		toolbar: theme.mixins.toolbar,
+		content: {
+			flexGrow: 1,
+			backgroundColor: theme.palette.background.default,
+			padding: theme.spacing(3),
+		},
 	})
 );
 
@@ -22,10 +43,10 @@ export function SideBar({ children }: { children: ReactNode }) {
 	return (
 		<>
 			<Drawer
-				className={styles.drawer}
+				className={classes.drawer}
 				variant="permanent"
 				classes={{
-					paper: styles.drawerPaper,
+					paper: classes.drawerPaper,
 				}}
 				anchor="left"
 			>
@@ -46,7 +67,7 @@ export function SideBar({ children }: { children: ReactNode }) {
 					))}
 				</List>
 			</Drawer>
-			<main>{children}</main>
+			{children}
 		</>
 	);
 }
