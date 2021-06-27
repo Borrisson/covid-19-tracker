@@ -7,8 +7,8 @@ import {
 } from "@material-ui/core";
 import Image from "next/dist/client/image";
 import { ReactNode } from "react";
-
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
+import { useState } from "react";
 
 const drawerWidth = 240;
 
@@ -32,13 +32,13 @@ const useStyles = makeStyles((theme: Theme) =>
 		toolbar: theme.mixins.toolbar,
 		content: {
 			flexGrow: 1,
-			backgroundColor: theme.palette.background.default,
 			padding: theme.spacing(3),
 		},
 	})
 );
 
 export function SideBar({ children }: { children: ReactNode }) {
+	const [selected, setSelected] = useState(0);
 	const classes = useStyles();
 	return (
 		<>
@@ -60,8 +60,27 @@ export function SideBar({ children }: { children: ReactNode }) {
 				<div className={classes.toolbar} />
 				<Divider />
 				<List>
-					{["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-						<ListItem button key={text}>
+					{[
+						"Newfoundland and Labrador",
+						"Nova Scotia",
+						"Prince Edward Island",
+						"New Brunswick",
+						"Quebec",
+						"Ontario",
+						"Manitoba",
+						"Saskatchewan",
+						"Alberta",
+						"British Columbia",
+						"Yukon",
+						"Northwest Territories",
+						"Nunavut",
+					].map((text, index) => (
+						<ListItem
+							button
+							key={text}
+							selected={index === selected}
+							onClick={() => setSelected(index)}
+						>
 							<ListItemText primary={text} />
 						</ListItem>
 					))}
