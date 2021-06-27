@@ -1,0 +1,20 @@
+@import "index";
+
+.root {
+	display: "flex";
+}
+.appBar {
+	width: calc(100% - $sidebar_width);
+	margin-left: $sidebar_width;
+}
+.drawer {
+	width: $sidebar_width;
+	flex-shrink: 0;
+}
+.drawerPaper {
+	width: $sidebar_width;
+}
+
+.content {
+	flex-grow: 1;
+}
