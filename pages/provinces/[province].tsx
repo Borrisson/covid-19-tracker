@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function Province({ props }: AppProps) {
+export default function Province({ province: data }: AppProps) {
 	const router = useRouter();
 	const { province } = router.query;
 
@@ -93,19 +93,11 @@ interface ProvincesProps extends Partial<GetStaticPropsContext> {
 }
 
 export async function getStaticProps({ params }: ProvincesProps) {
-	try {
-		const res = await fetch(
-			`https://api.opencovid.ca/summary?loc=${params?.province?.toUpperCase()}`
-		);
-		const province: string = await res.json();
-		return {
-			props: { province },
-		};
-	} catch (e) {
-		return {
-			props: {
-				province: "",
-			},
-		};
-	}
+	const res = await fetch(
+		`https://api.opencovid.ca/summary?loc=${params?.province?.toUpperCase()}`
+	);
+	const province = await res.json();
+	return {
+		props: { province },
+	};
 }
