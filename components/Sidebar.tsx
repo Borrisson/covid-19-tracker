@@ -5,6 +5,7 @@ import {
 	ListItemText,
 	Divider,
 } from "@material-ui/core";
+import Link from "next/link";
 import Image from "next/dist/client/image";
 import { ReactNode } from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
@@ -61,27 +62,29 @@ export function SideBar({ children }: { children: ReactNode }) {
 				<Divider />
 				<List>
 					{[
-						"Newfoundland and Labrador",
-						"Nova Scotia",
-						"Prince Edward Island",
-						"New Brunswick",
-						"Quebec",
-						"Ontario",
-						"Manitoba",
-						"Saskatchewan",
-						"Alberta",
-						"British Columbia",
-						"Yukon",
-						"Northwest Territories",
-						"Nunavut",
-					].map((text, index) => (
+						{ province: "Newfoundland and Labrador", code: "nl" },
+						{ province: "Nova Scotia", code: "ns" },
+						{ province: "Prince Edward Island", code: "pei" },
+						{ province: "New Brunswick", code: "nb" },
+						{ province: "Quebec", code: "qc" },
+						{ province: "Ontario", code: "on" },
+						{ province: "Manitoba", code: "mb" },
+						{ province: "Saskatchewan", code: "sk" },
+						{ province: "Alberta", code: "ab" },
+						{ province: "British Columbia", code: "bc" },
+						{ province: "Yukon", code: "yk" },
+						{ province: "Northwest Territories", code: "nwt" },
+						{ province: "Nunavut", code: "nu" },
+					].map(({ province, code }, index) => (
 						<ListItem
 							button
-							key={text}
+							key={code}
 							selected={index === selected}
 							onClick={() => setSelected(index)}
 						>
-							<ListItemText primary={text} />
+							<Link href={`/provinces/${code}`}>
+								<ListItemText primary={province} />
+							</Link>
 						</ListItem>
 					))}
 				</List>

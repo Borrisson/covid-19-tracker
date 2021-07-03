@@ -26,19 +26,33 @@ export async function getStaticPaths() {
 		"nl",
 	];
 
-	const paths = provinces.map((province) => ({
+	const paths = provinces.map((province: string) => ({
 		params: { province },
 	}));
 
 	return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params }: GetStaticPropsContext) {
-	const res = await fetch(
-		`https://api.opencovid.ca/summary?loc=${params.province.toUpperCase()}`
-	);
-	const province = await res.json();
-	return {
-		props: { province },
+interface ProvincesProps extends Partial<GetStaticPropsContext> {
+	params: {
+		province: string | undefined;
 	};
+}
+
+export async function getStaticProps({ params }: ProvincesProps) {
+	try {
+		const res = await fetch(
+			`https://api.opencovid.ca/summary?loc=${params?.province?.toUpperCase()}`
+		);
+		const province: string = await res.json();
+		return {
+			props: { province },
+		};
+	} catch (e) {
+		return {
+			props: {
+				province: "",
+			},
+		};
+	}
 }
