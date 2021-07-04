@@ -67,3 +67,11 @@ export default function Home() {
 		</div>
 	);
 }
+
+export function getStaticProps() {
+	return {
+		props: {
+			home: true,
+		},
+	};
+}

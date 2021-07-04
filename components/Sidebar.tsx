@@ -39,8 +39,29 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-export function SideBar({ children }: { children: ReactNode }) {
-	const [selected, setSelected] = useState(0);
+export function SideBar({
+	children,
+	home,
+}: {
+	children: ReactNode;
+	home?: boolean;
+}) {
+	const provinces = [
+		{ province: "Newfoundland and Labrador", code: "nl" },
+		{ province: "Nova Scotia", code: "ns" },
+		{ province: "Prince Edward Island", code: "pei" },
+		{ province: "New Brunswick", code: "nb" },
+		{ province: "Quebec", code: "qc" },
+		{ province: "Ontario", code: "on" },
+		{ province: "Manitoba", code: "mb" },
+		{ province: "Saskatchewan", code: "sk" },
+		{ province: "Alberta", code: "ab" },
+		{ province: "British Columbia", code: "bc" },
+		{ province: "Yukon", code: "yk" },
+		{ province: "Northwest Territories", code: "nwt" },
+		{ province: "Nunavut", code: "nu" },
+	];
+	const [selected, setSelected] = useState(provinces.length);
 	const classes = useStyles();
 	return (
 		<>
@@ -63,21 +84,7 @@ export function SideBar({ children }: { children: ReactNode }) {
 					<div className={classes.toolbar} />
 					<Divider />
 					<List>
-						{[
-							{ province: "Newfoundland and Labrador", code: "nl" },
-							{ province: "Nova Scotia", code: "ns" },
-							{ province: "Prince Edward Island", code: "pei" },
-							{ province: "New Brunswick", code: "nb" },
-							{ province: "Quebec", code: "qc" },
-							{ province: "Ontario", code: "on" },
-							{ province: "Manitoba", code: "mb" },
-							{ province: "Saskatchewan", code: "sk" },
-							{ province: "Alberta", code: "ab" },
-							{ province: "British Columbia", code: "bc" },
-							{ province: "Yukon", code: "yk" },
-							{ province: "Northwest Territories", code: "nwt" },
-							{ province: "Nunavut", code: "nu" },
-						].map(({ province, code }, index) => (
+						{provinces.map(({ province, code }, index) => (
 							<ListItem
 								button
 								key={code}
@@ -89,6 +96,17 @@ export function SideBar({ children }: { children: ReactNode }) {
 								</Link>
 							</ListItem>
 						))}
+						{!home && (
+							<ListItem
+								button
+								key="home"
+								onClick={() => setSelected(provinces.length)}
+							>
+								<Link href="/">
+									<ListItemText primary="<- Return home" />
+								</Link>
+							</ListItem>
+						)}
 					</List>
 				</Drawer>
 			</nav>
