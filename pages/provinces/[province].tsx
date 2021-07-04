@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 export default function Province({ province: data }: AppProps) {
 	const router = useRouter();
 	const { province } = router.query;
-
+	console.log(data);
 	const classes = useStyles();
 	const bull = <span className={classes.bullet}>•</span>;
 
@@ -94,7 +94,7 @@ interface ProvincesProps extends Partial<GetStaticPropsContext> {
 
 export async function getStaticProps({ params }: ProvincesProps) {
 	const res = await fetch(
-		`https://api.opencovid.ca/summary?loc=${params?.province?.toUpperCase()}`
+		`https://api.covid19tracker.ca/vaccines/age-groups/province/${params?.province?.toUpperCase()}`
 	);
 	const province = await res.json();
 	return {
