@@ -28,7 +28,6 @@ const useStyles = makeStyles({
 export default function Province({ province }: AppProps) {
 	const classes = useStyles();
 	const bull = <span className={classes.bullet}>•</span>;
-	console.log(province);
 
 	return (
 		<Card className={classes.root}>
@@ -58,7 +57,7 @@ export default function Province({ province }: AppProps) {
 		</Card>
 	);
 }
-// need to find half decent api (one api has no vaccines, the other has terrible query params, where province field is a mix of province name or abbreviation), I could map the urls using my own api, will lo
+
 export async function getStaticPaths() {
 	const provinces = [
 		"on",
@@ -91,19 +90,10 @@ interface ProvincesProps extends Partial<GetStaticPropsContext> {
 
 export async function getStaticProps({ params }: ProvincesProps) {
 	const res = await fetch(
-		`https://api.covid19tracker.ca/vaccines/age-groups/province/${params?.province?.toUpperCase()}`
+		`https://api.covid19tracker.ca/reports/province/${params?.province?.toUpperCase()}`
 	);
 	const province = await res.json();
-	if (province.data.length) {
-		const data = province.data.map(
-			(dateData: { data: string; date: string }) => {
-				const newData = JSON.parse(dateData.data);
-				dateData.data = newData;
-				return dateData;
-			}
-		);
-		province.data = data;
-	}
+
 	return {
 		props: { province },
 	};
