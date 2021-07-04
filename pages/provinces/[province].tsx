@@ -1,6 +1,5 @@
 import { GetStaticPropsContext } from "next";
 import { AppProps } from "next/dist/next-server/lib/router/router";
-import { useRouter } from "next/router";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -26,12 +25,10 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function Province({ province: data }: AppProps) {
-	const router = useRouter();
-	const { province } = router.query;
-	console.log(data);
+export default function Province({ province }: AppProps) {
 	const classes = useStyles();
 	const bull = <span className={classes.bullet}>•</span>;
+	console.log(province);
 
 	return (
 		<Card className={classes.root}>
@@ -97,6 +94,16 @@ export async function getStaticProps({ params }: ProvincesProps) {
 		`https://api.covid19tracker.ca/vaccines/age-groups/province/${params?.province?.toUpperCase()}`
 	);
 	const province = await res.json();
+	if (province.data.length) {
+		const data = province.data.map(
+			(dateData: { data: string; date: string }) => {
+				const newData = JSON.parse(dateData.data);
+				dateData.data = newData;
+				return dateData;
+			}
+		);
+		province.data = data;
+	}
 	return {
 		props: { province },
 	};
