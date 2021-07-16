@@ -79,7 +79,8 @@ export function SideBar({
 						src="/Utah.jpg"
 						layout="fill"
 						objectFit="cover"
-						quality={100}
+						blurDataURL="/Utah.jpg"
+						placeholder="blur"
 					/>
 					<div className={classes.toolbar} />
 					<Divider />

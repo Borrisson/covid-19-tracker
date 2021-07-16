@@ -82,15 +82,9 @@ export async function getStaticPaths() {
 	return { paths, fallback: false };
 }
 
-interface ProvincesProps extends Partial<GetStaticPropsContext> {
-	params: {
-		province: string | undefined;
-	};
-}
-
-export async function getStaticProps({ params }: ProvincesProps) {
+export async function getStaticProps({ params }: GetStaticPropsContext) {
 	const res = await fetch(
-		`https://api.covid19tracker.ca/reports/province/${params?.province?.toUpperCase()}`
+		`https://api.covid19tracker.ca/reports/province/${params?.province}`
 	);
 	const province = await res.json();
 
