@@ -49,7 +49,7 @@ export function SideBar({
 	const provinces = [
 		{ province: "Newfoundland and Labrador", code: "nl" },
 		{ province: "Nova Scotia", code: "ns" },
-		{ province: "Prince Edward Island", code: "pei" },
+		{ province: "Prince Edward Island", code: "pe" },
 		{ province: "New Brunswick", code: "nb" },
 		{ province: "Quebec", code: "qc" },
 		{ province: "Ontario", code: "on" },
@@ -58,7 +58,7 @@ export function SideBar({
 		{ province: "Alberta", code: "ab" },
 		{ province: "British Columbia", code: "bc" },
 		{ province: "Yukon", code: "yk" },
-		{ province: "Northwest Territories", code: "nwt" },
+		{ province: "Northwest Territories", code: "nt" },
 		{ province: "Nunavut", code: "nu" },
 	];
 	const [selected, setSelected] = useState(provinces.length);
