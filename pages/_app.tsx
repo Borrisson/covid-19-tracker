@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 				<SideBar home={pageProps.home}>
-					<Component {...pageProps} />;
+					<Component {...pageProps} />
 				</SideBar>
 			</ThemeProvider>
 		</>
